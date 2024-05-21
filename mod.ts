@@ -1,8 +1,33 @@
+/**
+ * A bare-bones class for symmetric, banded matrices.
+ *
+ * @example Illustrated usage
+ * ```ts
+ * const matrix = new Matrix(101, 3);
+ * matrix.band(0).fill(-2);
+ * matrix.band(1).fill(1);
+ *
+ * const x = new Float64Array(matrix.dim);
+ * x.fill(1);
+ *
+ * // Call this once and only once!
+ * matrix.factor();
+ *
+ * // Now we can solve as many times as we want. Updates in place!
+ * matrix.solve(x);
+ * // Now x contains the solution to the linear system.
+ * ```
+ *
+ */
 export default class Matrix {
-  // The dimensions of the (square) matrix; equivalently the maximum number of elements in a band
+  /**
+   * The dimensions of the (square) matrix; equivalently the maximum number of elements in a band
+   */
   #dim: number;
 
-  // The raw backing storage of the matrix
+  /**
+   * The raw backing storage of the matrix
+   */
   #raw: Float64Array;
 
   /**
