@@ -65,6 +65,15 @@ export default class Matrix {
     return this.#raw.subarray(k * this.#dim, (k + 1) * this.#dim - k);
   }
 
+  /**
+   * Set all elements of all bands to `x`.
+   *
+   * @param x
+   */
+  fill(x: number): void {
+    this.#raw.fill(x);
+  }
+
   // Helper method for individual element indexing. No bounds checking is performed.
   #index(i: number, j: number): number {
     return Math.abs(i - j) * this.#dim + Math.min(i, j);
