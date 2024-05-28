@@ -90,13 +90,16 @@ export default class Matrix {
   }
 
   /**
-   * Sets the value at (i, j) = (j, i). Bounds checking is the responsibility of the caller.
+   * Sets the value at (i, j) = (j, i), returning the old value. Bounds checking is the responsibility of the caller.
    * @param i
    * @param j
    * @param x The value to set to
    */
-  set(i: number, j: number, x: number) {
-    this.#raw[this.#index(i, j)] = x;
+  set(i: number, j: number, x: number): number {
+    const k = this.#index(i, j);
+    const y = this.#raw[k];
+    this.#raw[k] = x;
+    return y;
   }
 
   /**
@@ -107,19 +110,6 @@ export default class Matrix {
    */
   add(i: number, j: number, x: number): number {
     return (this.#raw[this.#index(i, j)] += x);
-  }
-
-  /**
-   * Replaces the value at (i, j) = (j, i), returning the old value. Bounds checking is the responsibility of the caller.
-   * @param i
-   * @param j
-   * @param x The value to set to
-   */
-  replace(i: number, j: number, x: number): number {
-    const k = this.#index(i, j);
-    const y = this.#raw[k];
-    this.#raw[k] = x;
-    return y;
   }
 
   /**
